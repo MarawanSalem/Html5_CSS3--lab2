@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webWorker</title>
+</head>
+<body>
+    <h1>2- web worker task</h1>
+    <button id="sum1">calc sum1</button>
+    <button id="sum2">calc sum2</button>
+    <button id="bg">change bg</button>
+
+    <script>
+        var worker1 = new Worker("worker1.js");
+        var worker2 = new Worker("worker2.js");
+
+        let sum1 = document.getElementById("sum1");
+        let sum2 = document.getElementById("sum2");
+        let bg = document.getElementById("bg");
+
+        sum1.onclick = function () {
+            worker1.postMessage("");
+        }
+
+        sum2.onclick = function () {
+            worker2.postMessage("");
+        }
+
+        worker1.onmessage = function (message) {
+            console.log(message);
+            alert(message.data);
+        }
+
+        worker2.onmessage = function (message) {
+        console.log(message);
+            alert(message.data);
+        }
+
+        bg.onclick = function () {
+            if (document.body.style.background !== 'green') {
+                document.body.style.background = "green";
+            } else {
+                document.body.style.background = "blue";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch position</title>
+</head>
+<body>
+    <h2>Live Location API</h2>
+    <button onclick="getLoc()">get Location</button>
+    <button onclick="OpenWin()">open Location in new window</button>
+
+    <script>
+        var long;
+        var lat;
+
+        function getLoc() {
+
+            console.log(navigator)
+            navigator.geolocation.watchPosition(liveLoc)
+        }
+        function liveLoc(position) {
+            lat = position.coords.latitude;
+            long = position.coords.longitude;
+
+            location.assign("http://maps.google.com/maps?q=" + lat + ',+' + long)
+        }
+        var win;
+        function OpenWin(){
+
+            lat = position.coords.latitude;
+            long = position.coords.longitude;
+            win = open("http://maps.google.com/maps?q=" + lat + ',' + long, "", "width=500,height=500");
+            win.focus();
+            getLoc();
+            liveLoc(position);
+        }
+    </script>
+</body>
+</html>
